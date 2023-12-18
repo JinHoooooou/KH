@@ -1,0 +1,48 @@
+.intro-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+    background-color: #dbd2e6;
+}
+
+.main-profile-img {
+    height: 300px;
+    width: 300px;
+    background-color: #d6d9dc;
+    border: 2px solid #c8cebd;
+    border-radius: 100%;
+}
+
+.main-profile-msg {
+    height: 300px;
+    width: 300px;
+    line-height: 50px;
+    margin-left: 5%;
+    font-size: 30px;
+    color: #4d4d4c;
+}
+
+.about-section {
+    text-align: center;
+}
+
+.about-section h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.about-contents {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-contents th {
+    width: 65px;
+}
+
+.about-contents th,
+.about-contents td {
+    text-align: left;
+}

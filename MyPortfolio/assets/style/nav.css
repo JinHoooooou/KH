@@ -1,0 +1,29 @@
+nav {
+    padding: 0px 7px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: right;
+}
+
+nav ul li {
+    float: left;
+    padding-right: 10px;
+    list-style: none;
+}
+
+nav ul li a {
+    padding: 5px;
+    text-decoration: none;
+    /* 텍스트 밑줄 제거를 위해 사용 */
+    color: white;
+}
+
+/* 폰트 색 변경 */
+nav ul li a:hover {
+    background: white;
+    border-radius: 5px;
+    color: #bab3ff;
+    text-decoration: underline;
+}
