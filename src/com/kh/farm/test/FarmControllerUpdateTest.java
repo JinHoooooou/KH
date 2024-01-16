@@ -27,6 +27,7 @@ class FarmControllerUpdateTest {
     int kind = 1;
     String name = "사과";
     addFarm(kind, name, 100);
+    assert controller.getMap().size() == 1;
     // Given: (과일-사과)인 Farm 객체가 주어진다.
     Farm givenFarm = Farm.create(1, "사과");
     // And: 수량은 50이 주어진다.
@@ -37,10 +38,11 @@ class FarmControllerUpdateTest {
 
     // Then: 결과는 true이다.
     assertThat(actual).isTrue();
-    // And: 수량은 50개이다.
-    HashMap<Farm, Integer> map = controller.getMap();
+    // And: controller의 map의 size는 1이다.
+    HashMap<Farm, Integer> map  = controller.getMap();
+    assertThat(map.size()).isEqualTo(1);
+    // And: 수량은 50개로 수정된다.
     assertThat(map.get(givenFarm)).isEqualTo(amount);
-
   }
 
 

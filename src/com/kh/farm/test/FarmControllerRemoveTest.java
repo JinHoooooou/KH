@@ -23,10 +23,11 @@ class FarmControllerRemoveTest {
   @Test
   @DisplayName("이미 저장된 (과일-사과)Farm 객체를 삭제할 때")
   public void removeKindSuccessTest1() {
-    // Given: map에 (과일-사과)인 Farm 객체가 저장되어 있다.
+    // Given: (과일-사과)인 Farm 객체가 저장되어 있다.
     int kind = 1;
     String name = "사과";
     addFarm(kind, name);
+    assert controller.getMap().size() == 1;
     // And: (과일-사과)인 Farm 객체가 주어진다.
     Farm givenFarm = Farm.create(kind, name);
 
@@ -42,10 +43,11 @@ class FarmControllerRemoveTest {
   @Test
   @DisplayName("이미 저장된 (채소-무)Farm 객체를 삭제할 때")
   public void removeKindSuccessTest2() {
-    // Given: map에 (채소-무)인 Farm 객체가 저장되어 있다.
+    // Given: (채소-무)인 Farm 객체가 저장되어 있다.
     int kind = 2;
     String name = "무";
     addFarm(kind, name);
+    assert controller.getMap().size() == 1;
     // And: (채소-무)인 Farm 객체가 주어진다.
     Farm givenFarm = Farm.create(kind, name);
 
@@ -61,10 +63,11 @@ class FarmControllerRemoveTest {
   @Test
   @DisplayName("이미 저장된 (견과-호두)Farm 객체를 삭제할 때")
   public void removeKindSuccessTest3() {
-    // Given: map에 (견과-땅콩)인 Farm 객체가 저장되어 있다.
+    // Given: (견과-땅콩)인 Farm 객체가 저장되어 있다.
     int kind = 3;
     String name = "땅콩";
     addFarm(kind, name);
+    assert controller.getMap().size() == 1;
     // And: (견과-땅콩)인 Farm 객체가 주어진다.
     Farm givenFarm = Farm.create(kind, name);
 
@@ -80,10 +83,11 @@ class FarmControllerRemoveTest {
   @Test
   @DisplayName("invalid Farm 객체를 삭제할 때")
   public void removeKindFailTest1() {
-    // Given: map에 (견과-땅콩)인 Farm 객체가 저장되어 있다.
+    // Given: (견과-땅콩)인 Farm 객체가 저장되어 있다.
     int kind = 3;
     String name = "땅콩";
     addFarm(kind, name);
+    assert controller.getMap().size() == 1;
     // And: invalid한 Farm 객체가 주어진다.
     Farm invalidFarm = null;
 

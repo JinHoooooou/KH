@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FarmControllerAddTest {
@@ -21,9 +19,9 @@ class FarmControllerAddTest {
   }
 
   @Test
-  @DisplayName("과일-사과인 Farm 객체와 수량이 주어질 때")
+  @DisplayName("(과일-사과)인 Farm 객체와 수량이 주어질 때")
   void addNewKindSuccessTest1() {
-    // Given: Farm 객체로 kind:1, name:사과가 주어지고
+    // Given: (과일-사과)인 Farm 객체가 주어지고
     Farm givenFarm = Farm.create(1, "사과");
     // And: 수량은 30이 주어진다.
     int amount = 30;
@@ -40,9 +38,9 @@ class FarmControllerAddTest {
   }
 
   @Test
-  @DisplayName("채소-양배추인 Farm 객체와 수량이 주어질 때")
+  @DisplayName("(채소-양배추)인 Farm 객체와 수량이 주어질 때")
   void addNewKindSuccessTest2() {
-    // Given: Farm 객체로 kind:2, name:양배추가 주어지고
+    // Given: (채소-양배추)인 Farm 객체가 주어지고
     Farm givenFarm = Farm.create(2, "양배추");
     // And: 수량은 10이 주어진다.
     int amount = 10;
@@ -59,9 +57,9 @@ class FarmControllerAddTest {
   }
 
   @Test
-  @DisplayName("견과-땅콩인 Farm 객체와 수량이 주어질 때")
+  @DisplayName("(견과-땅콩)인 Farm 객체와 수량이 주어질 때")
   void addNewKindSuccessTest3() {
-    // Given: Farm 객체로 kind:3, name:땅콩이 주어지고
+    // Given: (견과-땅콩)인 Farm 객체가 주어지고
     Farm givenFarm = Farm.create(3, "땅콩");
     // And: 수량은 52이 주어진다.
     int amount = 52;
@@ -103,7 +101,7 @@ class FarmControllerAddTest {
     // Given: (과일-사과)인 Farm 객체가 저장되어 있고
     addFarm(1, "사과");
     assert controller.getMap().size() == 1;
-    // And: (채소-과일)인 Farm 객체가 주어지고
+    // And: (채소-사과)인 Farm 객체가 주어지고
     Farm givenFarm = Farm.create(2, "사과");
     // And: 수량은 100이 주어진다.
     int amount = 100;
@@ -120,7 +118,7 @@ class FarmControllerAddTest {
   @Test
   @DisplayName("kind가 invalid한 Farm 객체와 수량이 주어질 때")
   void addNewKindFailTest1() {
-    // Given: Farm 객체로 kind:4, name:배가 주어지고
+    // Given: (Invalid-배)인 Farm 객체가 주어지고
     assert controller.getMap().isEmpty();
     Farm givenFarm = Farm.create(4, "배");
     // And: 수량은 100이 주어진다.
@@ -131,7 +129,7 @@ class FarmControllerAddTest {
 
     // Then: 결과는 false이다.
     assertThat(actual).isFalse();
-    // And: map의 size는 1이다.
+    // And: map은 empty이다.
     assertThat(controller.getMap().isEmpty()).isTrue();
   }
 
