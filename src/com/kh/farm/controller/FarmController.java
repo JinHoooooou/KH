@@ -3,12 +3,7 @@ package com.kh.farm.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.naming.directory.InvalidAttributesException;
-
 import com.kh.farm.model.vo.Farm;
-import com.kh.farm.model.vo.Fruit;
-import com.kh.farm.model.vo.Nut;
-import com.kh.farm.model.vo.Vegetable;
 
 public class FarmController {
 
@@ -31,6 +26,9 @@ public class FarmController {
     if (map.containsKey(farm)) {
       return false;
     }
+    if (amount < 0) {
+      return false;
+    }
     map.put(farm, amount);
     return true;
   }
@@ -50,18 +48,18 @@ public class FarmController {
     return true;
   }
 
-  public boolean updateKind(int kind, String name, int amount) {
-    return updateKind(Farm.create(kind, name), amount);
+  public boolean changeAmount(int kind, String name, int amount) {
+    return changeAmount(Farm.create(kind, name), amount);
   }
 
-  public boolean updateKind(Farm farm, int amount) {
+  public boolean changeAmount(Farm farm, int amount) {
     if (farm == null) {
       return false;
     }
     if (!map.containsKey(farm)) {
       return false;
     }
-    if (map.get(farm) == amount) {
+    if (amount < 0) {
       return false;
     }
     map.replace(farm, amount);

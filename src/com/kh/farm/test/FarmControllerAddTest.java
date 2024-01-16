@@ -155,6 +155,23 @@ class FarmControllerAddTest {
     assertThat(controller.getMap().size()).isEqualTo(1);
   }
 
+  @Test
+  @DisplayName("수량이 음수로 주어질 때")
+  void updateKindFailTest3() {
+    // Given: (견과-땅콩)인 Farm 객체가 주어지고
+    Farm givenFarm = Farm.create(3, "땅콩");
+    // And: 수량은 -10이 주어진다.
+    int amount = -10;
+
+    // When: addNewKind 메소드를 호출한다.
+    boolean actual = controller.addNewKind(givenFarm, amount);
+
+    // Then: 결과는 false이다.
+    assertThat(actual).isFalse();
+    // And: map은 empty이다.
+    assertThat(controller.getMap().isEmpty()).isTrue();
+  }
+
   private void addFarm(int kind, String name) {
     controller.addNewKind(Farm.create(kind, name), 100);
   }

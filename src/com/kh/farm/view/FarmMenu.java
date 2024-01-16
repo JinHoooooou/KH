@@ -2,7 +2,6 @@ package com.kh.farm.view;
 
 import com.kh.farm.controller.FarmController;
 
-import javax.naming.directory.InvalidAttributesException;
 import java.util.Scanner;
 
 public class FarmMenu {
@@ -27,8 +26,12 @@ public class FarmMenu {
   }
 
   public void mainMenu() {
+    printer.title();
     while (mainMenu != 9) {
+      printer.mainMenu();
       mainMenu = scanner.nextInt();
+      scanner.nextLine();
+      printer.userInput(mainMenu);
       executeMain();
     }
   }
@@ -46,9 +49,11 @@ public class FarmMenu {
   }
 
   public void adminMenu() {
-    while (adminMenu != -9) {
+    while (adminMenu != 9) {
       printer.adminMenu();
       adminMenu = scanner.nextInt();
+      scanner.nextLine();
+      printer.userInput(adminMenu);
       executeAdmin();
     }
 
@@ -59,6 +64,12 @@ public class FarmMenu {
       this.addNewKind();
     } else if (adminMenu == 2) {
       this.removeKind();
+    } else if (adminMenu == 3) {
+      this.changeAmount();
+    } else if (adminMenu == 4) {
+      this.printFarm();
+    } else if (adminMenu == 9) {
+      return;
     }
 
   }
@@ -68,26 +79,38 @@ public class FarmMenu {
   }
 
   public void addNewKind() {
-    printer.kind();
-    int kind = printer.inputKind(scanner, ADD);
-    String name = printer.inputName(scanner);
-    int amount = printer.inputAmount(scanner);
-    printer.addKindResult(farmController.addNewKind(kind, name, amount));
+    boolean result = false;
+    while (!result) {
+      printer.kind();
+      int kind = printer.inputKind(scanner, ADD);
+      String name = printer.inputName(scanner);
+      int amount = printer.inputAmount(scanner);
+      result = farmController.addNewKind(kind, name, amount);
+      printer.addKindResult(result);
+    }
   }
 
   public void removeKind() {
-    printer.kind();
-    int kind = printer.inputKind(scanner, REMOVE);
-    String name = printer.inputName(scanner);
-    printer.removeKindResult(farmController.removeKind(kind, name));
+    boolean result = false;
+    while (!result) {
+      printer.kind();
+      int kind = printer.inputKind(scanner, REMOVE);
+      String name = printer.inputName(scanner);
+      result = farmController.removeKind(kind, name);
+      printer.removeKindResult(result);
+    }
   }
 
   public void changeAmount() {
-    printer.kind();
-    int kind = printer.inputKind(scanner, UPDATE);
-    String name = printer.inputName(scanner);
-    int amount = printer.inputAmount(scanner);
-    printer.updateKindResult(farmController.updateKind(kind,name,amount));
+    boolean result = false;
+    while (!result) {
+      printer.kind();
+      int kind = printer.inputKind(scanner, UPDATE);
+      String name = printer.inputName(scanner);
+      int amount = printer.inputAmount(scanner);
+      result = farmController.changeAmount(kind, name, amount);
+      printer.changeAmountResult(result);
+    }
   }
 
   public void printFarm() {

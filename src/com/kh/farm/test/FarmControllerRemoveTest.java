@@ -108,10 +108,10 @@ class FarmControllerRemoveTest {
     // And: (과일-배)인 Farm 객체가 주어진다.
     int kind = 1;
     String name = "배";
-    Farm invalidFarm = Farm.create(kind, name);
+    Farm givenFarm = Farm.create(kind, name);
 
     // When: removeKind 메소드를 호출한다.
-    boolean actual = controller.removeKind(invalidFarm);
+    boolean actual = controller.removeKind(givenFarm);
 
     // Then: 결과는 false이다.
     assertThat(actual).isFalse();

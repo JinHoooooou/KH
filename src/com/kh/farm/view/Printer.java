@@ -14,15 +14,16 @@ public class Printer {
     commands.put(1, "추가");
   }
 
+  public void title() {
+    System.out.println("========== KH 마트 ==========");
+  }
 
   public void mainMenu() {
-    System.out.println("========== KH 마트 ==========");
     System.out.println("******* 메인 메뉴 *******");
     System.out.println("1. 직원 메뉴");
     System.out.println("2. 손님 메뉴");
     System.out.println("9. 종료");
     System.out.print("메뉴 번호 선택: ");
-
   }
 
   public void adminMenu() {
@@ -35,7 +36,7 @@ public class Printer {
     System.out.print("메뉴 번호 선택: ");
   }
 
-  public void customMenu(HashMap<Farm,Integer> map) {
+  public void customMenu(HashMap<Farm, Integer> map) {
     System.out.println("현재 KH마트 농산물 수량");
     printFarm(map);
     System.out.println("******* 고객 메뉴 *******");
@@ -72,6 +73,7 @@ public class Printer {
       System.out.print(command + "할 종류 번호: ");
       result = scanner.nextInt();
       scanner.nextLine();
+      userInput(result);
       if (result == 1 || result == 2 || result == 3) {
         break;
       }
@@ -83,13 +85,16 @@ public class Printer {
 
   public String inputName(Scanner scanner) {
     System.out.print("이름: ");
-    return scanner.next();
+    String name = scanner.next();
+    userInput(name);
+    return name;
   }
 
   public int inputAmount(Scanner scanner) {
-    System.out.println("수량: ");
+    System.out.print("수량: ");
     int result = scanner.nextInt();
     scanner.nextLine();
+    userInput(result);
     return result;
   }
 
@@ -99,10 +104,16 @@ public class Printer {
   }
 
   public void removeKindResult(boolean result) {
-    System.out.println(result ? "농산물 삭제에 성공하였습니다." : "농산물 삭제에 실패하였습니다. 다시 입렵해주세요.");
+    System.out.println(result ? "농산물 삭제에 성공하였습니다." : "농산물 삭제에 실패하였습니다. 다시 입력해주세요.");
   }
 
-  public void updateKindResult(boolean result) {
-    System.out.println(result ? "농산물 수량이 수정되었습니다." : "농산물 수량 수정에 실패하였습니다.");
+  public void changeAmountResult(boolean result) {
+    System.out.println(result ? "농산물 수량이 수정되었습니다." : "농산물 수량 수정에 실패하였습니다. 다시 입력해주세요.");
   }
+
+  public void userInput(Object userInput) {
+    System.out.println(userInput);
+  }
+
+
 }
