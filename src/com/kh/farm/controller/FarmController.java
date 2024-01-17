@@ -74,4 +74,42 @@ public class FarmController {
     return map;
   }
 
+  public boolean buyFarm(int kind, String name) {
+    return this.buyFarm(Farm.create(kind, name));
+  }
+
+  private boolean buyFarm(Farm farm) {
+    if (farm == null) {
+      return false;
+    }
+    if (!map.containsKey(farm)) {
+      return false;
+    }
+    if (map.get(farm) == 0) {
+      return false;
+    }
+    list.add(farm);
+    map.replace(farm, map.get(farm) - 1);
+    return true;
+  }
+
+  public boolean removeFarm(int kind, String name) {
+    return removeFarm(Farm.create(kind, name));
+  }
+
+  private boolean removeFarm(Farm farm) {
+    if (farm == null) {
+      return false;
+    }
+    if (!list.contains(farm)) {
+      return false;
+    }
+    list.remove(farm);
+    map.replace(farm, map.get(farm) + 1);
+    return true;
+  }
+
+  public ArrayList<Farm> printBuyFarm() {
+    return list;
+  }
 }

@@ -2,6 +2,7 @@ package com.kh.farm.view;
 
 import com.kh.farm.model.vo.Farm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class Printer {
     System.out.println("========== KH 마트 ==========");
   }
 
-  public void mainMenu() {
+  public void farmMain() {
     System.out.println("******* 메인 메뉴 *******");
     System.out.println("1. 직원 메뉴");
     System.out.println("2. 손님 메뉴");
@@ -26,7 +27,7 @@ public class Printer {
     System.out.print("메뉴 번호 선택: ");
   }
 
-  public void adminMenu() {
+  public void adminMain() {
     System.out.println("******* 직원 메뉴 *******");
     System.out.println("1. 새 농산물 추가");
     System.out.println("2. 종류 삭제");
@@ -36,7 +37,7 @@ public class Printer {
     System.out.print("메뉴 번호 선택: ");
   }
 
-  public void customMenu(HashMap<Farm, Integer> map) {
+  public void customMain(HashMap<Farm, Integer> map) {
     System.out.println("현재 KH마트 농산물 수량");
     printFarm(map);
     System.out.println("******* 고객 메뉴 *******");
@@ -111,9 +112,26 @@ public class Printer {
     System.out.println(result ? "농산물 수량이 수정되었습니다." : "농산물 수량 수정에 실패하였습니다. 다시 입력해주세요.");
   }
 
+  public void buyFarmResult(boolean result) {
+    System.out.println(result ? "구매에 성공하였습니다." : "마트에 없는 물건이거나 수량이 없습니다. 다시 입력해주세요.");
+  }
+
+  public void removeFarmResult(boolean result) {
+    System.out.println(result ? "구매 취소에 성공하였습니다." : "구매 목록에 존재하지 않습니다. 다시 입렵해주세요.");
+  }
+
   public void userInput(Object userInput) {
     System.out.println(userInput);
   }
 
+  public void printBuyFarm(ArrayList<Farm> list) {
+    for (Farm farm : list) {
+      System.out.printf("%s: %s\n", farm.getKind(), farm.getName());
+    }
+  }
 
+  public void currentFarm(HashMap<Farm, Integer> map) {
+    System.out.println("현재 KH마트 농산물 수량");
+    printFarm(map);
+  }
 }
